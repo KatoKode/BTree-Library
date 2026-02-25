@@ -38,6 +38,8 @@ A fast, generic, in-memory **B-Tree** implementation with critical paths hand-wr
 - `main.h`          — demo configuration & data structures
 - `main.c`          — example program (insert, delete, search, iterate, bulk load)
 - `makefile`        — builds the demo linking against `libbtree.so`
+- `sorted.txt`      — sorted text input file
+- `unsorted.txt`    — unsorted text input file
 
 ## Quick Start — Build & Run Demo
 
