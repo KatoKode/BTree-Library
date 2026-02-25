@@ -21,7 +21,7 @@ clear;
 
 sep="--------------------------------------------------------------------------------"
 
-test -e ./libbtree.so || exit -1
+test -e ./btree/libbtree.so || exit -1
 
 echo -e "${sep}"
 
