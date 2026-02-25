@@ -1,0 +1,71 @@
+# libbtree — High-Performance B-Tree Shared Library (x86-64)
+
+**Author:** JD McIntosh
+**License:** GPL-2.0  
+**Current status:** Pre-built shared library + minimal demo (2026)
+
+A fast, generic, in-memory **B-Tree** implementation with critical paths hand-written in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
+
+- Valgrind **clean** (zero leaks, zero invalid reads/writes in extensive testing)
+- Broad Linux compatibility (glibc ≥ 2.14 → runs on Ubuntu 18.04+, Debian 10+, RHEL 7+/AlmaLinux 8+/Rocky 8+, openSUSE Leap 15+, SUSE SLES 12+, Fedora, etc.)
+- SIMD-aware memory moves (scalar / SSE2 / AVX2 detection at startup)
+- Designed for high-throughput insertion, deletion, search with proper balancing
+
+## Features
+
+- **Generic objects** — arbitrary payload size (`o_size`), automatically aligned to 8 bytes
+- **Configurable minimum degree** (`mindeg` ≥ 2)
+- **Separate comparison callbacks**:
+  - `o_cmp_cb` — full object vs full object
+  - `k_cmp_cb` — key vs full object (for search/delete)
+- **Key extraction** via `k_get_cb` (enables key-only lookups)
+- **Custom cleanup** via `o_del_cb` (called on delete/terminate)
+- **No duplicates** — insert returns -1 if key already exists
+- **Full balancing** — split on insert overflow, borrow/merge on delete underflow
+- **Iterator API** — in-order traversal (`b_iter_begin`, `b_iter_next`, `b_iter_deref`, etc.)
+- **Lower/upper bound** support (`b_lower_bound`, `b_upper_bound`)
+- **Bulk load** helper (`b_bulk_load`) for sorted/pre-sorted data
+- **Optimized small-node search** — linear hunt ≤9 items, binary search above
+- **Custom aligned memmove** in assembly with runtime SIMD dispatch
+
+## Included Files
+
+- `libbtree.so`     — pre-built shared library (Valgrind clean, portable glibc baseline)
+- `btree.h`         — public C header with all API declarations
+- `main.h`          — demo configuration & data structures
+- `main.c`          — example program (insert, delete, search, iterate, bulk load)
+- `makefile`        — builds the demo linking against `libbtree.so`
+
+## Quick Start — Build & Run Demo
+
+1. Place `libbtree.so` in the same folder as the demo files (or in `/usr/local/lib`, etc.)
+2. Build the demo:
+
+```bash
+make
+
+#define DATA_COUNT      (1ULL << 23)   // ~8 million
+#define DELETE_COUNT    (DATA_COUNT * 3 / 4)
+#define MINIMUM_DEGREE  2              // or try 48 for shallower tree
+
+b_tree_t *b_tree_alloc(void);
+void b_tree_init(b_tree_t *, size_t mindeg, size_t o_size,
+                 b_compare_cb o_cmp, b_compare_cb k_cmp,
+                 b_delete_cb o_del, b_get_key_cb k_get);
+void b_tree_term(b_tree_t *);
+void b_tree_free(b_tree_t *);
+
+int b_insert(b_tree_t *, void const *object);
+void b_remove(b_tree_t *, void const *key);
+void *b_search(b_node_t *, void const *key, void *buffer);
+
+b_iter_t *b_iter_begin(b_tree_t *);
+void *b_iter_deref(const b_iter_t *);
+void b_iter_next(b_iter_t *);
+int b_iter_valid(const b_iter_t *);
+void b_iter_term(b_iter_t *);
+
+void b_walk(b_tree_t *, b_walk_cb);
+void b_bulk_load(b_tree_t *, b_get_obj_cb);
+b_iter_t *b_lower_bound(b_tree_t *, void const *);
+b_iter_t *b_upper_bound(b_tree_t *, void const *);
