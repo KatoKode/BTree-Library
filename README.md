@@ -81,7 +81,9 @@ int b_iter_valid(const b_iter_t *);
 void b_iter_term(b_iter_t *);
 
 void b_walk(b_tree_t *, b_walk_cb);
+
 void b_bulk_load(b_tree_t *, b_get_obj_cb);
+
 b_iter_t *b_lower_bound(b_tree_t *, void const *);
 b_iter_t *b_upper_bound(b_tree_t *, void const *);
 ```
