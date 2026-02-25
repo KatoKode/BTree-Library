@@ -41,7 +41,7 @@ A fast, generic, in-memory **B-Tree** implementation with critical paths hand-wr
 
 ## Quick Start — Build & Run Demo
 
-Run the following command in the `BTree-main` folder:
+Run the following command in the `BTree-Library-main` folder:
 
 ```bash
 sh ./btree_make.sh
