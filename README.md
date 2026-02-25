@@ -1,7 +1,10 @@
+
+[![License: GPL-2.0](https://img.shields.io/badge/License-GPL%202.0-blue.svg)](https://opensource.org/licenses/GPL-2.0)
+[![Stars](https://img.shields.io/github/stars/KatoKode/BTree-Library?style=social)](https://github.com/KatoKode/BTree-Library/stargazers)
+
 # libbtree — High-Performance B-Tree Shared Library (x86-64)
 
 **Author:** JD McIntosh
-**License:** GPL-2.0  
 **Current status:** Pre-built shared library + minimal demo (2026)
 
 A fast, generic, in-memory **B-Tree** implementation with critical paths hand-written in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
@@ -38,16 +41,26 @@ A fast, generic, in-memory **B-Tree** implementation with critical paths hand-wr
 
 ## Quick Start — Build & Run Demo
 
-1. Place `libbtree.so` in the same folder as the demo files (or in `/usr/local/lib`, etc.)
-2. Build the demo:
+Run the following command in the `BTree-main` folder:
 
 ```bash
-make
+sh ./btree_make.sh
+```
 
-#define DATA_COUNT      (1ULL << 23)   // ~8 million
-#define DELETE_COUNT    (DATA_COUNT * 3 / 4)
+In folder `demo` enter the following command:
+
+```bash
+./go_demo.sh
+```
+
+## Minimum Degree >= 2
+```C
 #define MINIMUM_DEGREE  2              // or try 48 for shallower tree
+```
 
+## C header file btree/btree.h for definitions
+
+```C
 b_tree_t *b_tree_alloc(void);
 void b_tree_init(b_tree_t *, size_t mindeg, size_t o_size,
                  b_compare_cb o_cmp, b_compare_cb k_cmp,
@@ -69,3 +82,4 @@ void b_walk(b_tree_t *, b_walk_cb);
 void b_bulk_load(b_tree_t *, b_get_obj_cb);
 b_iter_t *b_lower_bound(b_tree_t *, void const *);
 b_iter_t *b_upper_bound(b_tree_t *, void const *);
+```
