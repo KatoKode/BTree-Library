@@ -31,7 +31,6 @@ __thread int thread_seeded = 0;
 
 size_t my_rand = 0;
 
-//#define DEMO_DEBUG  1
 //#define WALK_TREE   1
 //#define TREE_ITER   1
 

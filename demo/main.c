@@ -90,10 +90,6 @@ int main(int argc, char *argv[]) {
 int o_cmp_cb (void const *vp1, void const *vp2) {
   data_t const *d1 = vp1;
   data_t const *d2 = vp2;
-#ifdef DEMO_DEBUG
-  printf("%s:  d1:{ lng: %ld } <=> d2: { lng: %ld }\n",
-      __func__, d1->lng, d2->lng);
-#endif
   // do comparsions
   if (d1->lng > d2->lng) return 1;
   else if (d1->lng < d2->lng) return -1;
@@ -107,10 +103,6 @@ int o_cmp_cb (void const *vp1, void const *vp2) {
 int k_cmp_cb (void const * vp1, void const * vp2) {
   long const lng = *(long const *)vp1;
   data_t const *d2 = vp2;
-#ifdef DEMO_DEBUG
-  printf("%s: { lng: %ld } <=> { d->lng: %ld }\n",
-      __func__, lng, d2->lng);
-#endif
   // do comparsions
   if (lng > d2->lng) return 1;
   else if (lng < d2->lng) return -1;
@@ -123,9 +115,6 @@ int k_cmp_cb (void const * vp1, void const * vp2) {
 //------------------------------------------------------------------------------
 void const * k_get_cb (void const *vp) {
   data_t const *dp = vp;
-#ifdef DEMO_DEBUG
-  printf("%s: lng: %ld\n", __func__, dp->lng);
-#endif
   // return object key
   return &dp->lng;
 }
@@ -135,30 +124,13 @@ void const * k_get_cb (void const *vp) {
 //
 //------------------------------------------------------------------------------
 void o_del_cb (void const *vp) {
-#ifdef DEMO_DEBUG
-  data_t const *d = vp;
-  print_data(__func__, d);
-#endif
 }
-#ifdef DEMO_DEBUG
-//------------------------------------------------------------------------------
-//
-// PRINT_DATA
-//
-//------------------------------------------------------------------------------
-void print_data (char const *s, data_t const *d) {
-  printf("%s:  lng: %ld\n", s, d->lng);
-}
-#endif
 //------------------------------------------------------------------------------
 //
 // TERM_TREE
 //
 //------------------------------------------------------------------------------
 void term_tree (b_tree_t *tree) {
-#ifdef DEMO_DEBUG
-  puts("\n---| term tree |---\n");
-#endif
   b_tree_term(tree);
   b_tree_free(tree);
 }
