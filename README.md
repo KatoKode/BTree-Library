@@ -76,6 +76,7 @@ void *b_search(b_node_t *, void const *key, void *buffer);
 
 b_iter_t *b_iter_begin(b_tree_t *);
 void *b_iter_deref(const b_iter_t *);
+void b_iter_init(b_iter_t *, b_tree_t *);
 void b_iter_next(b_iter_t *);
 int b_iter_valid(const b_iter_t *);
 void b_iter_term(b_iter_t *);
