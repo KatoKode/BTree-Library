@@ -17,8 +17,9 @@
 #   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #-------------------------------------------------------------------------------
 ARCH := -march=x86-64 -m64 -mno-avx512f
+BTREE_OBJ = ../btree/libbtree.so
 demo: main.o $(BTREE_OBJ)
-	gcc -O3 $(ARCH) -z noexecstack -pthread main.o ../btree/libbtree.so -o demo
+	gcc -O3 $(ARCH) -z noexecstack -pthread main.o $(BTREE_OBJ) -o demo
 main.o: main.c
 	gcc -O3 $(ARCH) -Wall -c main.c -o main.o
 .PHONY: clean
