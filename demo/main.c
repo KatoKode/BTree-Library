@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
     size_t line_size = 32;
     char *line = calloc(1, line_size);
-    for (size_t i = 0; i < DATA_COUNT; ++i) {
+    for (size_t i = 0; i < DATA_TOTAL; ++i) {
         size_t nread = getline(&line, &line_size, infile);
         if (nread == (size_t)-1) break;
         line[nread - 1] = '\0';
@@ -193,7 +193,7 @@ void walk_tree (b_tree_t *tree) {
 //
 //------------------------------------------------------------------------------
 void * bulk_get_object(void) {
-  if (bulk_count >= DATA_COUNT) return NULL;
+  if (bulk_count >= DATA_TOTAL) return NULL;
   bulk_obj.lng = la[bulk_count++];
   return &bulk_obj;
 }
@@ -224,6 +224,7 @@ void mixed_insert_delete (b_tree_t *tree)
   size_t total_ops = 0;
   size_t insert_count = 0;
   size_t delete_count = 0;
+  size_t DELETE_TOTAL = DATA_TOTAL * 0.3;
 
   printf("Starting mixed inserts/deletes workload...\n\n");
 
@@ -234,7 +235,7 @@ void mixed_insert_delete (b_tree_t *tree)
     return;
   }
 
-  while (total_ops < (DATA_COUNT + DELETE_COUNT)) {
+  while (total_ops < (DATA_TOTAL + DELETE_TOTAL)) {
     if ((total_ops % 10) < 7) {
       data_t d;
       d.lng = la[insert_count++];
@@ -281,8 +282,9 @@ void bulk_insert_delete (b_tree_t *tree)
   size_t insert_count = 0;
   size_t delete_count = 0;
   size_t array_idx = 0;
+  size_t DELETE_TOTAL = DATA_TOTAL * 0.75;
 
-  printf("Starting %lu inserts workload...\n\n", (size_t)DATA_COUNT);
+  printf("Starting %lu inserts workload...\n\n", (size_t)DATA_TOTAL);
 
   // === Timing starts here ===
   struct timespec start, stop;
@@ -291,7 +293,7 @@ void bulk_insert_delete (b_tree_t *tree)
     return;
   }
 
-  while (insert_count < (size_t)DATA_COUNT) {
+  while (insert_count < (size_t)DATA_TOTAL) {
     data_t d;
     d.lng = la[array_idx++];
 
@@ -314,7 +316,7 @@ void bulk_insert_delete (b_tree_t *tree)
   printf("Elapsed time: %.3f seconds\n", elapsed_sec);
   printf("Throughput: %.0f ops/sec\n\n", insert_count / elapsed_sec);
 
-  printf("Starting %lu deletes workload...\n\n", (size_t)DELETE_COUNT);
+  printf("Starting %lu deletes workload...\n\n", (size_t)DELETE_TOTAL);
 
   // === Timing starts here ===
   if (clock_gettime(CLOCK_MONOTONIC, &start) == -1) {
@@ -322,7 +324,7 @@ void bulk_insert_delete (b_tree_t *tree)
     return;
   }
 
-  while (delete_count < (size_t)DELETE_COUNT) {
+  while (delete_count < DELETE_TOTAL) {
     long candidate = la[delete_count++];
     b_remove(tree, (void const *)&candidate);
     total_ops++;
@@ -352,8 +354,8 @@ void range_scan (b_tree_t *tree)
   printf("│       RANGE SCAN       │\n");
   printf("└────────────────────────┘\n");
 
-  long int key1 = 5500159;
-  long int key2 = 5500200;
+  long int key1 = 1670491;
+  long int key2 = 1670510;
   b_iter_t *lower = b_lower_bound(tree, &key1);
   b_iter_t *upper = b_upper_bound(tree, &key2);
   for (; !b_iter_eq(lower, upper); b_iter_next(lower))

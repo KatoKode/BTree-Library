@@ -36,8 +36,7 @@ size_t my_rand = 0;
 //#define TREE_ITER   1
 
 // defines you can modify
-#define DATA_COUNT      (8192 * 1024)
-#define DELETE_COUNT    (DATA_COUNT * 0.30)
+#define DATA_TOTAL      1250000
 #define MINIMUM_DEGREE  48
 
 // index for tree walking
@@ -54,7 +53,7 @@ struct data {
 
 data_t bulk_obj = { .lng = 0 };
 
-long la [DATA_COUNT];
+long la [DATA_TOTAL];
 
 // callback definitions
 int o_cmp_cb (void const *, void const *);
