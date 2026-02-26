@@ -18,9 +18,9 @@
 #-------------------------------------------------------------------------------
 ARCH := -march=x86-64 -m64 -mno-avx512f
 demo: main.o $(BTREE_OBJ)
-	gcc $(ARCH) -z noexecstack -pthread main.o ../btree/libbtree.so -o demo
+	gcc -O3 $(ARCH) -z noexecstack -pthread main.o ../btree/libbtree.so -o demo
 main.o: main.c
-	gcc $(ARCH) -Wall -c main.c -o main.o
+	gcc -O3 $(ARCH) -Wall -c main.c -o main.o
 .PHONY: clean
 clean:
 	rm -f demo main.o
