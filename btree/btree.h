@@ -24,7 +24,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "../util/util.h"
 
 #define BT_FALSE   0
 #define BT_TRUE    1
