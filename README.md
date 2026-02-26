@@ -60,7 +60,7 @@ In folder `demo` enter the following command:
 #define MINIMUM_DEGREE  2              // try 32 or 48 or 64 for shallower tree
 ```
 
-## C header file btree/btree.h
+## C Routines in btree.h
 
 ```C
 int b_insert (b_tree_t *, void const *);
