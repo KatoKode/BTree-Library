@@ -63,28 +63,25 @@ In folder `demo` enter the following command:
 ## C header file btree/btree.h for definitions
 
 ```C
-b_tree_t *b_tree_alloc(void);
-void b_tree_init(b_tree_t *, size_t mindeg, size_t o_size,
-                 b_compare_cb o_cmp, b_compare_cb k_cmp,
-                 b_delete_cb o_del, b_get_key_cb k_get);
-void b_tree_term(b_tree_t *);
-void b_tree_free(b_tree_t *);
+int b_insert (b_tree_t *, void const *);
+int b_remove (b_tree_t *, void const *);
+void * b_search (b_node_t *, void const *);
+void b_tree_init (b_tree_t *, size_t const, size_t const, b_compare_cb,
+    b_compare_cb, b_delete_cb, b_get_key_cb);
+void b_tree_term (b_tree_t *);
+void b_walk (b_tree_t *, b_walk_cb);
 
-int b_insert(b_tree_t *, void const *object);
-void b_remove(b_tree_t *, void const *key);
-void *b_search(b_node_t *, void const *key, void *buffer);
-
-b_iter_t *b_iter_begin(b_tree_t *);
-void *b_iter_deref(const b_iter_t *);
-void b_iter_init(b_iter_t *, b_tree_t *);
-void b_iter_next(b_iter_t *);
-int b_iter_valid(const b_iter_t *);
+b_iter_t * b_iter_begin (b_tree_t *);
+void * b_iter_deref(const b_iter_t *); 
+b_iter_t * b_iter_end (b_tree_t *);
+int b_iter_eq(const b_iter_t *, const b_iter_t *);
+int b_iter_init (b_iter_t *, b_tree_t *);
+void b_iter_next (b_iter_t *);
 void b_iter_term(b_iter_t *);
+int b_iter_valid (const b_iter_t *);
 
-void b_walk(b_tree_t *, b_walk_cb);
+void b_bulk_load (b_tree_t *, b_get_obj_cb);
 
-void b_bulk_load(b_tree_t *, b_get_obj_cb);
-
-b_iter_t *b_lower_bound(b_tree_t *, void const *);
-b_iter_t *b_upper_bound(b_tree_t *, void const *);
+b_iter_t * b_lower_bound (b_tree_t *, void const *);
+b_iter_t * b_upper_bound (b_tree_t *, void const *);
 ```
