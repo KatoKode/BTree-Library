@@ -21,15 +21,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#include <pthread.h>
 #include "../btree/btree.h"
-#include "../util/util.h"
-#include "pcg/pcg_basic.h"
-
-__thread pcg32_random_t thread_rng;
-__thread int thread_seeded = 0;
-
-size_t my_rand = 0;
 
 //#define WALK_TREE   1
 //#define TREE_ITER   1
