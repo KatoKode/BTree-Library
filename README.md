@@ -2,7 +2,7 @@
 [![License: GPL-2.0](https://img.shields.io/badge/License-GPL%202.0-blue.svg)](https://opensource.org/licenses/GPL-2.0)
 [![Stars](https://img.shields.io/github/stars/KatoKode/BTree-Library?style=social)](https://github.com/KatoKode/BTree-Library/stargazers)
 
-# libbtree — (x86-64) High-Performance B-Tree Shared Library
+# libbtree — High-Performance B-Tree Shared Library
 
 **Author:** JD McIntosh
 **Current status:** Pre-built shared library + minimal demo (2026)
@@ -55,7 +55,7 @@ In folder `demo` enter the following command:
 ./go_demo.sh
 ```
 
-## Minimum Degree >= 2
+## Adjustable Minimum Degree >= 2
 ```C
 #define MINIMUM_DEGREE  2              // try 32 or 48 or 64 for shallower tree
 ```
