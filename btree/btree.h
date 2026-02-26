@@ -83,9 +83,6 @@ struct b_iter {
 #define b_iter_alloc() (calloc(1, sizeof(b_iter_t)))
 #define b_iter_free(P) (free(P), P = NULL)
 
-b_node_t ** b_child_at (b_node_t *, size_t const);
-void * b_object_at (b_node_t *, size_t const);
-size_t b_find_key (b_node_t *, void const *, int *);
 int b_insert (b_tree_t *, void const *);
 void b_node_init (b_node_t *, b_tree_t *, uint8_t const );
 void b_node_term (b_node_t *);
