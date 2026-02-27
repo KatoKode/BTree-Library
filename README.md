@@ -21,7 +21,7 @@ Random inserts (1.25M)    | 2.19M        | Single-threaded
 Random deletes (0.94M)    | 4.11M        | 
 Mixed insert/delete (~1.6M) | 2.78M      | 70/30 split
 
-hardware: i7-11800H @ ~4.0–4.6 GHz turbo
+hardware: i7-11800H @ ~4.0–4.6 GHz turbo, using 8-byte keys.
 
 ## Features
 
