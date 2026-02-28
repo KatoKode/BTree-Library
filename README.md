@@ -7,7 +7,7 @@
 **Author:** JD McIntosh
 **Current status:** Pre-built shared library + minimal demo (2026)
 
-A fast, generic, in-memory **B-Tree** implementation with critical paths hand-written in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
+A fast, generic, in-memory **B-Tree** implementation with critical paths in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
 
 - Valgrind **clean** (zero leaks, zero invalid reads/writes in extensive testing)
 - Broad Linux compatibility (glibc ≥ 2.14 → runs on Ubuntu 18.04+, Debian 10+, RHEL 7+/AlmaLinux 8+/Rocky 8+, openSUSE Leap 15+, SUSE SLES 12+, Fedora, etc.)
