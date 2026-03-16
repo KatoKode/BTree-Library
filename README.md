@@ -5,9 +5,26 @@
 # libbtree — High-Performance B-Tree Shared Library
 
 **Author:** JD McIntosh
-**Current status:** Pre-built shared library + minimal demo (2026)
 
-A fast, generic, in-memory **B-Tree** implementation with critical paths in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
+---
+
+### Why This Looks Scary (And Why That’s the Point)
+
+This library will **never** be production code.  
+Who in their right mind would volunteer to maintain raw x86-64 assembly mixed with C?  
+
+I like the freedom of knowing what the code is doing and being able to make it do exactly that.  
+I want to stay close to the metal — to understand the hardware, the OS, the calling conventions, the cache hierarchy, and the gritty details most modern developers never touch.
+
+This repo (and everything else under KatoKode) is my way of proving I still can.  
+It’s not about shipping a product. It’s about mastering the complexity, one line of assembly at a time.
+
+Old-school by choice.  
+If that scares you… good. That’s the point. 😏
+
+---
+
+A fast, generic, in-memory **B-Tree** implementation in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
 
 - Valgrind **clean** (zero leaks, zero invalid reads/writes in extensive testing)
 - Broad Linux compatibility (glibc ≥ 2.14 → runs on Ubuntu 18.04+, Debian 10+, RHEL 7+/AlmaLinux 8+/Rocky 8+, openSUSE Leap 15+, SUSE SLES 12+, Fedora, etc.)
