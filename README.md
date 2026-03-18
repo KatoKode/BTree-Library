@@ -11,7 +11,7 @@
 A fast, generic, in-memory **B-Tree** implementation in x86-64 assembly, exposed as a clean C shared library (`libbtree.so`).
 
 - Valgrind **clean** (zero leaks, zero invalid reads/writes in extensive testing)
-- Broad Linux compatibility (glibc ≥ 2.14 → runs on Ubuntu 18.04+, Debian 10+, RHEL 7+/AlmaLinux 8+/Rocky 8+, openSUSE Leap 15+, SUSE SLES 12+, Fedora, etc.)
+- Broad Linux compatibility (glibc ≥ 2.14, runs on Ubuntu 18.04+, Debian 10+, RHEL 7+/AlmaLinux 8+/Rocky 8+, openSUSE Leap 15+, SUSE SLES 12+, Fedora, etc.)
 - SIMD-aware memory moves (scalar / SSE2 / AVX2 detection at startup)
 - Designed for high-throughput insertion, deletion, search with proper balancing
 
