@@ -124,7 +124,7 @@ Thoroughly tested with 8+ million elements under multiple workloads.
 
 **Performance (Tiger Lake i7-11800H)**
 
-Bulk load: 8.39 million elements in 0.317 seconds (~26.5 M elements/sec)
+Bulk load: 8.39 million elements (each 128-bytes) in 0.317 seconds (~26.5 M elements/sec)
 Bulk inserts: 764k–780k operations/sec
 Bulk deletes: 944k–967k operations/sec
 Mixed insert/delete: 980k–986k operations/sec
