@@ -95,3 +95,50 @@ void b_bulk_load (b_tree_t *, b_get_obj_cb);
 b_iter_t * b_lower_bound (b_tree_t *, void const *);
 b_iter_t * b_upper_bound (b_tree_t *, void const *);
 ```
+
+# Portfolio
+## BTree-Library — High-Performance B-Tree in x86_64 Assembly
+Single-threaded, production-grade B-Tree with C interface
+GitHub: https://github.com/KatoKode/BTree-Library
+
+**Overview**
+
+BTree-Library is a fully functional, highly optimized B-Tree implemented almost entirely in x86_64 assembly (NASM) with a clean C API and shared-library build. It delivers exceptional single-threaded performance for insert, delete, search, range queries, and bulk loading — making it ideal for high-throughput in-memory indexing, databases, and sorted containers.
+
+**Key Features**
+
+Full B-Tree operations (insert, delete, search, split, borrow, merge)
+O(n) bottom-up bulk loading
+Forward direction iterator with lower_bound / upper_bound support
+Range-scan capability
+Customizable via user-supplied callbacks (compare, key extraction, deletion)
+Automatic runtime SIMD detection (scalar / SSE2 / AVX2) for accelerated memory operations
+
+**Technical Highlights**
+
+Optimized x86_64 assembly for maximum performance and cache efficiency.
+SIMD-optimized MEMMOVE_INLINE macro using AVX2 where available.
+Zero-overhead C interface with constructor/destructor library initialization.
+Fixed-size node pooling and 8-byte aligned object storage.
+Thoroughly tested with 8+ million elements under multiple workloads.
+
+**Performance (Tiger Lake i7-11800H)**
+
+Bulk load: 8.39 million elements in 0.317 seconds (~26.5 M elements/sec)
+Bulk inserts: 764k–780k operations/sec
+Bulk deletes: 944k–967k operations/sec
+Mixed insert/delete: 980k–986k operations/sec
+
+**Technologies**
+
+x86_64 Assembly (NASM) | C | SIMD (AVX2/SSE2) | Linux | GNU Toolchain
+
+**Skills Demonstrated**
+
+Low-level systems programming and performance engineering
+Optimized assembly for data structures
+Cache-aware algorithm design
+Runtime CPU feature detection
+Production-grade library development (shared object + C API)
+
+This project showcases my ability to push hardware to its limits while maintaining clean, reusable interfaces. The BTree-Library is faster than most C++ B-Tree implementations and serves as a strong foundation for high-performance applications requiring ordered data storage.
